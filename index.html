@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>冯星星 Astro · 不动产全周期操盘手</title>
+<meta name="description" content="冯星星（Astro）的个人主页——18 年不动产与工程经验：柬埔寨路桥工程与片区开发、万科开发经营本部资产管理部首批成员；擅长项目前期策划与筹备，现从事城市更新与产业规划。">
+<meta name="author" content="冯星星 Astro">
+
+<!--
+  ============================================================
+  个人主页 · 内容已从 resume-upload/ 两份简历 PDF 填充
+  ------------------------------------------------------------
+  内容已从 resume-upload/ 两份简历 PDF 填充；补充微信、领英等信息时，在联系区按注释追加卡片即可。
+  配色与版式无需改动；替换文字即可。
+  ============================================================
+-->
+
+<style>
+  /* ---------- 设计变量 ----------
+     主题：暖纸底色 + 墨色文字 + 闽南砖红点缀，呼应老工业区红砖与规划图纸气质 */
+  :root {
+    --paper:      #f6f4ee;
+    --card:       #ffffff;
+    --ink:        #23262d;
+    --ink-soft:   #4a4f58;
+    --muted:      #7c828c;
+    --line:       #e3ded2;
+    --accent:     #a8402b;   /* 砖红 */
+    --accent-soft:#f0e4dc;
+    --teal:       #2f6f6a;   /* 青绿，辅助色 */
+    --maxw:       1080px;
+    --radius:     14px;
+    --shadow:     0 2px 10px rgba(35,38,45,.05), 0 10px 30px rgba(35,38,45,.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+                 "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* 中文排版：标题断行平衡、正文避免孤字孤行 */
+  h1, h2, h3, h4, .stat b { text-wrap: balance; }
+  p, li, .desc, .proj-note, .stat span { text-wrap: pretty; }
+
+  ::selection { background: var(--accent); color: #fff; }
+
+  /* 无 JS 时内容默认可见；有 JS 时启用滚动显现动画 */
+  html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  html.js .reveal.in   { opacity: 1; transform: none; }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  section { padding: 84px 0; scroll-margin-top: 64px; }
+
+  /* ---------- 顶部导航 ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(246,244,238,.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 0 28px;
+    height: 60px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand { font-weight: 700; letter-spacing: .06em; color: var(--ink); }
+  .nav-brand small { color: var(--muted); font-weight: 400; margin-left: 6px; }
+  .nav-links { display: flex; gap: 26px; }
+  .nav-links a { color: var(--ink-soft); font-size: 14.5px; }
+  .nav-links a:hover { color: var(--accent); text-decoration: none; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 110px 0 90px;
+    overflow: hidden;
+    background:
+      radial-gradient(900px 420px at 82% -10%, rgba(168,64,43,.10), transparent 60%),
+      radial-gradient(700px 380px at 8% 110%, rgba(47,111,106,.10), transparent 60%),
+      var(--paper);
+  }
+  /* 规划图纸网格纹理 */
+  .hero::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(35,38,45,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(35,38,45,.045) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, #000 30%, transparent 75%);
+  }
+  .hero .wrap { position: relative; }
+
+  .hero-kicker {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: var(--accent); font-size: 14px; font-weight: 600; letter-spacing: .28em;
+    margin-bottom: 22px;
+  }
+  .hero-kicker::before { content: ""; width: 34px; height: 2px; background: var(--accent); }
+
+  .hero h1 {
+    font-size: clamp(44px, 7vw, 72px);
+    font-weight: 800; line-height: 1.12; letter-spacing: .02em;
+  }
+  .hero h1 .en {
+    display: block;
+    font-size: .52em; font-weight: 500; color: var(--muted);
+    letter-spacing: .34em; margin-top: 10px;
+  }
+  .hero-sub {
+    margin: 26px 0 0; max-width: 640px;
+    color: var(--ink-soft); font-size: 17px;
+  }
+  .hero-sub strong { color: var(--ink); }
+
+  .hero-cta { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 12px 26px; border-radius: 999px;
+    font-size: 15px; font-weight: 600; transition: all .2s ease;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: #8e3522; text-decoration: none; transform: translateY(-1px); }
+  .btn-ghost { border: 1.5px solid var(--ink); color: var(--ink); }
+  .btn-ghost:hover { background: var(--ink); color: #fff; text-decoration: none; }
+
+  /* 关键数字条（个人经历 + 湖里创新区项目，均出自简历与 hid-wiki 素材） */
+  .hero-stats {
+    margin-top: 56px; display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--line);
+    border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+  }
+  .stat { background: var(--card); padding: 20px 18px; }
+  .stat b { display: block; font-size: 26px; font-weight: 800; color: var(--ink); line-height: 1.25; white-space: nowrap; }
+  .stat b em { font-style: normal; color: var(--accent); }
+  .stat span { font-size: 12.5px; color: var(--muted); letter-spacing: .04em; }
+
+  /* ---------- 通用章节头 ---------- */
+  .sec-head { margin-bottom: 44px; }
+  .sec-kicker {
+    color: var(--accent); font-size: 13px; font-weight: 700;
+    letter-spacing: .3em; text-transform: uppercase; margin-bottom: 10px;
+  }
+  .sec-head h2 { font-size: 30px; font-weight: 800; letter-spacing: .03em; }
+  .sec-head p { color: var(--muted); font-size: 15px; margin-top: 8px; }
+
+  /* ---------- 关于我 ---------- */
+  .about-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 40px; align-items: start; }
+  .about-text p + p { margin-top: 14px; }
+  .about-text .highlight { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 10px 16px; border-radius: 0 8px 8px 0; color: var(--ink-soft); font-size: 15px; }
+
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tag {
+    display: inline-block; padding: 7px 15px; border-radius: 999px;
+    background: var(--card); border: 1px solid var(--line);
+    font-size: 13.5px; color: var(--ink-soft);
+  }
+  .tag.hot { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+  /* ---------- 工作经历（时间线） ---------- */
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before {
+    content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px;
+    width: 2px; background: var(--line);
+  }
+  .tl-item { position: relative; padding: 0 0 36px 22px; }
+  .tl-item:last-child { padding-bottom: 4px; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -30px; top: 10px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--card); border: 4px solid var(--accent);
+  }
+  .tl-item .tl-period {
+    font-size: 13px; font-weight: 700; color: var(--accent);
+    letter-spacing: .08em; margin-bottom: 4px;
+  }
+  .tl-item h3 { font-size: 18px; font-weight: 700; }
+  .tl-item h3 small { color: var(--muted); font-weight: 500; font-size: 14px; margin-left: 8px; }
+  .tl-item p { color: var(--ink-soft); font-size: 15px; margin-top: 6px; max-width: 760px; }
+  .tl-item ul { margin-top: 8px; padding-left: 0; list-style: none; }
+  .tl-item li {
+    position: relative; padding-left: 16px;
+    color: var(--ink-soft); font-size: 14.5px; margin-top: 5px; max-width: 760px;
+  }
+  .tl-item li::before {
+    content: ""; position: absolute; left: 0; top: 11px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--teal);
+  }
+  .tl-item li b { color: var(--ink); }
+
+  /* ---------- 项目经历 ---------- */
+  .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .proj-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 28px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: 12px;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .proj-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(35,38,45,.08), 0 18px 44px rgba(35,38,45,.08); }
+  .proj-card.wide { grid-column: 1 / -1; }
+
+  .proj-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .proj-badge {
+    font-size: 12px; font-weight: 700; letter-spacing: .1em;
+    color: #fff; background: var(--accent); border-radius: 6px; padding: 3px 10px;
+  }
+  .proj-badge.green { background: var(--teal); }
+  .proj-badge.gray  { background: var(--muted); }
+  .proj-period { font-size: 13px; color: var(--muted); }
+  .proj-role { font-size: 13px; color: var(--accent); font-weight: 600; }
+
+  .proj-card h3 { font-size: 20px; font-weight: 800; line-height: 1.4; }
+  .proj-card .desc { color: var(--ink-soft); font-size: 14.5px; }
+
+  .proj-points { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .proj-points li {
+    position: relative; padding-left: 18px;
+    color: var(--ink-soft); font-size: 14.5px;
+  }
+  .proj-points li::before {
+    content: ""; position: absolute; left: 0; top: 11px;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .proj-points li b { color: var(--ink); }
+
+  .proj-note {
+    font-size: 13px; color: var(--muted);
+    border-left: 2px solid var(--line); padding-left: 10px;
+  }
+
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 8px; }
+  .chip {
+    font-size: 12.5px; color: var(--teal); background: rgba(47,111,106,.08);
+    border: 1px solid rgba(47,111,106,.25);
+    padding: 3px 11px; border-radius: 999px;
+  }
+  .chip.num {
+    color: var(--accent); background: var(--accent-soft);
+    border-color: rgba(168,64,43,.3); font-weight: 600;
+  }
+
+  /* ---------- 专长技能 ---------- */
+  .skill-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .skill-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .skill-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .skill-card h3 .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); display: inline-block; }
+
+  /* ---------- 教育背景 ---------- */
+  .edu-list { display: grid; gap: 18px; }
+
+  /* ---------- 联系 ---------- */
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .contact-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 22px; text-align: center;
+  }
+  .contact-card .ic { font-size: 22px; }
+  .contact-card h4 { font-size: 14.5px; margin: 8px 0 4px; color: var(--ink); }
+  .contact-card .val { font-size: 13.5px; color: var(--muted); word-break: break-all; }
+
+  /* ---------- 页脚 ---------- */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 34px 0 40px; color: var(--muted); font-size: 13.5px;
+    text-align: center;
+  }
+  footer .foot-links { margin-bottom: 8px; display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width: 860px) {
+    .about-grid, .skill-grid { grid-template-columns: 1fr; }
+    .proj-grid, .contact-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    section { padding: 64px 0; }
+  }
+  @media (max-width: 560px) {
+    .nav-links { display: none; }   /* 移动端隐藏导航，锚点仍可通过页脚/按钮访问 */
+    .proj-grid, .contact-grid { grid-template-columns: 1fr; }
+    .hero { padding: 80px 0 60px; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .stat { padding: 14px 10px; }
+    .stat b { font-size: 18px; }
+    .stat span { font-size: 11.5px; }
+  }
+
+  /* ---------- 打印（可作为纸质简历输出） ---------- */
+  @media print {
+    .nav, .hero-cta, footer .foot-links { display: none; }
+    body { background: #fff; }
+    .hero { padding: 30px 0 20px; }
+    section { padding: 30px 0; }
+    .proj-card, .skill-card, .contact-card { box-shadow: none; break-inside: avoid; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ======================= 顶部导航 ======================= -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#hero">冯星星<small>Astro</small></a>
+    <nav class="nav-links" aria-label="页面导航">
+      <a href="#about">关于我</a>
+      <a href="#experience">工作经历</a>
+      <a href="#projects">项目经历</a>
+      <a href="#skills">专长技能</a>
+      <a href="#education">教育背景</a>
+      <a href="#contact">联系我</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ======================= Hero ======================= -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <p class="hero-kicker">不动产全周期操盘手</p>
+    <h1>冯星星
+      <span class="en">ASTRO FENG</span>
+    </h1>
+    <p class="hero-sub">
+      18 年不动产与工程经验：在柬埔寨从事路桥工程和片区开发，曾任万科开发经营本部资产管理部首批成员，如今在厦门做城市更新与产业规划；项目前期策划与筹备，是我这些年做得最多的事。
+      现任职联发集团产业发展中心，参与厦门湖里老工业区更新项目的前期策划、产业研究与城市运营。
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#projects">查看项目经历</a>
+      <a class="btn btn-ghost" href="#contact">联系我</a>
+    </div>
+
+    <!-- 四张证明牌：工程早熟 / 开发体量 / 资管平台 / 运营结果（均出自简历） -->
+    <div class="hero-stats">
+      <div class="stat"><b><em>5680</em> 万美元合同额</b><span>25 岁项目经理</span></div>
+      <div class="stat"><b><em>236</em> 公顷</b><span>金边新城片区开发</span></div>
+      <div class="stat"><b><em>超千亿</em> 资产规模</b><span>万科本部资产管理部首批成员</span></div>
+      <div class="stat"><b><em>4044</em> 间</b><span>全国最大保租房一期 · 首年出租率 85%</span></div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- ======================= 关于我 ======================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="sec-kicker">01 · About</p>
+      <h2>关于我</h2>
+      <p>城市更新与资产运营</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>我是冯星星（Astro），江苏如东人，现居厦门。东南大学交通工程本科，2008 年毕业后在柬埔寨从事工程和地产开发九年，回国后加入万科、负责经营性资产运营，目前在联发集团做城市更新和产业规划。</p>
+        <p>长期在不动产行业，最熟的是项目前期；工程、资管、招商几段经历连起来，从拿地到运营各环节都熟；带过海内外团队，常与政府和合作方打交道。</p>
+        <p class="highlight">目前在联发集团产业发展中心任总经理助理，参与湖里老工业区更新项目（尚在前期策划阶段）——已组织完成《湖里老工业区改造提升概念方案》，平时持续产出产业政策月报和产业园区市场研究报告。</p>
+        <p>英语可作为工作语言（CET6）；2014 年获工程师中级职称。</p>
+      </div>
+      <div class="reveal">
+        <div class="tag-cloud">
+          <span class="tag hot">资产运营</span>
+          <span class="tag hot">招商运营</span>
+          <span class="tag hot">项目前期操盘</span>
+          <span class="tag hot">城市更新（当前方向）</span>
+          <span class="tag">产业规划</span>
+          <span class="tag">全周期项目管理</span>
+          <span class="tag">跨境投资开发</span>
+          <span class="tag">低效用地再开发</span>
+          <span class="tag">老旧厂房活化</span>
+          <span class="tag">一二级联动开发</span>
+          <span class="tag">会用 AI 工具</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 工作经历 ======================= -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="sec-kicker">02 · Experience</p>
+      <h2>工作经历</h2>
+      <p>2008 年至今，按时间倒序排列。</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-item reveal">
+        <div class="tl-period">2024.07 — 至今</div>
+        <h3>产业发展部 → 产业发展中心 · 高级专业经理 → 部门总经理助理 → 中心总经理助理 <small>联发集团 · 厦门</small></h3>
+        <ul>
+          <li>搭建集团产业组织架构与制度流程体系，主导或参与产业项目的经营计划、招商策略、运营分析与考核；</li>
+          <li>搭建品牌商户资源库与项目智库，为重点文创园、商业 MALL、综合体等项目提供品牌与客户资源支持；</li>
+          <li>入职先做资产运营（持有经营物业评估、业态升级建议），后转向城市更新与产业发展；</li>
+          <li>参与湖里老工业区更新项目的前期策划、产业研究与城市运营，组织完成《湖里老工业区改造提升概念方案》。</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-period">2022.07 — 2024.07</div>
+        <h3>资产管理合伙人 <small>厦门万科企业有限公司（万科集团开发经营本部）· 厦门</small></h3>
+        <ul>
+          <li>作为开发经营本部资产管理部首批成员，对接万科南方、西南区域经营性业务，两大区域资产合计超千亿、项目超 200 个（商业、产办、长租公寓、酒店等）；</li>
+          <li>负责年度预算审核、月度项目经营质量评审、自持项目方案专业评审、大宗交易评审，并参与经营目标审定与数据治理；</li>
+          <li>牵头泊寓院儿厦门海湾社区（全国最大保障性租赁住房项目）的筹开与经营，一期 4044 间首年出租率做到 85%。</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-period">2019.07 — 2021.12</div>
+        <h3>项目总监 <small>柬埔寨大型地产集团 · 金边</small></h3>
+        <ul>
+          <li>全面负责金边上城：拟开发面积 236 公顷的一二级联动开发，从市场调研、立项、土地确权（取得土地硬卡）做到总体城市规划与基础设施施工；</li>
+          <li>配套二级开发 SAMRAONG VILLAGE（33 公顷、约 1200 套），2021 年首开销售超 1500 万美元；</li>
+          <li>负责 PANDA 银行代建项目（约 3 万㎡旧楼改造）及美国分公司前期筹备。</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-period">2017.06 — 2019.06</div>
+        <h3>总经理助理 <small>上置集团柬埔寨分公司 · 金边</small></h3>
+        <ul>
+          <li>从零组建分公司：4 个半月完成注册、税务、制度与团队搭建；</li>
+          <li>主导金边印象商住综合体（占地 1.63 万㎡、建面约 15 万方）全流程开发：立项测算、土地竞标与交割、报批报建、营销策划。</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-period">2008.07 — 2017.06</div>
+        <h3>现场工程师 → 工程部副经理 → 项目经理 / 总经理助理 <small>上海建工集团股份有限公司柬埔寨公司 · 金边</small></h3>
+        <ul>
+          <li><b>2008–2010 · 现场工程师 → 项目部工程部副经理：</b>62 号公路北段修复项目（150 km、5780 万美元）现场工程师，后升任项目部工程部副经理；</li>
+          <li><b>2010–2012 · 分公司工程部副经理：</b>对外对接业主方柬埔寨公共工程与运输部（MPWT），沟通项目进展、参与新项目谈判；对内协助总经理管理质量、进度与安全，负责图纸审核、工程量核算、甲供材料计划审核；</li>
+          <li><b>2012–2017 · 项目经理 → 分公司总经理助理：</b>作为总承包商项目经理，在合同范围内全权负责柬埔寨国家 5 号公路项目（5680 万美元、30.331 km，一级公路扩建）的进度、质量、安全与成本——按期交付，0 起重大安全责任事故，核心团队 0 流动率；2016 年起回分公司任总经理助理，分管项目前期筹备；</li>
+          <li>任职期间编制公司管理手册 20 份，管理团队最多 100 人。</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 项目经历 ======================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="sec-kicker">03 · Projects</p>
+      <h2>项目经历</h2>
+      <p>挑了几个有代表性的项目，写背景、做法和结果。</p>
+    </div>
+
+    <div class="proj-grid">
+
+      <!--
+        项目一 · 厦门湖里老工业区更新项目（HID）
+        本人角色：参与前期策划、产业研究、城市运营（项目处于前期策划阶段）；已有明确阶段性交付物（概念方案、政策月报与园区研究报告）。
+        片区动态数字依据 hid-wiki/raw/ 素材撰写，可在 raw 文件中定位；已明确标注为背景资料，非个人业绩表述。
+      -->
+      <article class="proj-card wide reveal">
+        <div class="proj-meta">
+          <span class="proj-badge">当前项目 · 前期策划阶段</span>
+          <span class="proj-period">2025.07 — 至今</span>
+          <span class="proj-role">参与前期策划 · 产业研究 · 城市运营</span>
+        </div>
+        <h3>厦门湖里老工业区更新项目（湖里创新区 HID）</h3>
+        <p class="desc">
+          厦门湖里老工业区是经济特区发祥地，正在做低效工业用地再开发背景下的城市更新。项目目前处于前期策划阶段，我在联发集团产业发展中心负责前期策划、产业研究和城市运营相关工作。
+        </p>
+        <ul class="proj-points">
+         <li>组织完成《湖里老工业区改造提升概念方案》，提出片区改造的整体思路与空间产业框架；</li>
+         <li>持续产出产业政策月报、产业园区市场研究报告，供前期策划和决策参考；</li>
+         <li>用 AI 工具整理项目资料、辅助产业研究。</li>
+       </ul>
+      </article>
+
+      <article class="proj-card reveal">
+        <div class="proj-meta">
+          <span class="proj-badge green">资产运营</span>
+          <span class="proj-period">2022.12 — 2023.07</span>
+          <span class="proj-role">业务资管</span>
+        </div>
+        <h3>泊寓院儿厦门海湾社区</h3>
+        <p class="desc">全国最大的保障性租赁住房项目，负责筹开与经营：一期 4044 间从 3 月 5 日起租，年底出租率做到 85%。</p>
+        <ul class="proj-points">
+          <li>制定并督促达成年度预算，主导项目二期策划；</li>
+          <li>主导筹开及爬坡期经营策略，督促经营团队实现量价平衡；</li>
+          <li>参与大宗资产交易。</li>
+        </ul>
+        <div class="chip-row">
+          <span class="chip num">4044 间</span>
+          <span class="chip num">首年 85% 出租率</span>
+          <span class="chip">保障性租赁住房</span>
+        </div>
+      </article>
+
+      <article class="proj-card reveal">
+        <div class="proj-meta">
+          <span class="proj-badge">一级开发</span>
+          <span class="proj-period">2019.07 — 2021.12</span>
+          <span class="proj-role">项目总监</span>
+        </div>
+        <h3>金边上城 · 一二级联动新城开发（柬埔寨金边）</h3>
+        <p class="desc">金边北部一处拟开发面积 236 公顷的城区，一二级联动开发。</p>
+        <ul class="proj-points">
+          <li>完成市场调研与立项测算，取得 236 公顷土地硬卡；</li>
+          <li>完成总体城市规划与环湖公园、交通、筑岛围堰等专项规划及基础设施施工；</li>
+          <li>配套二级开发 SAMRAONG VILLAGE（33 公顷、约 1200 套），首开销售超 1500 万美元。</li>
+        </ul>
+        <div class="chip-row">
+          <span class="chip num">236 公顷</span>
+          <span class="chip num">首开 1500 万美元</span>
+          <span class="chip">一二级联动</span>
+          <span class="chip">政府外联</span>
+        </div>
+      </article>
+
+      <article class="proj-card reveal">
+        <div class="proj-meta">
+          <span class="proj-badge">综合体</span>
+          <span class="proj-period">2017.06 — 2019.06</span>
+          <span class="proj-role">总经理助理（分公司从零组建）</span>
+        </div>
+        <h3>金边印象商住综合体（上置集团 · 柬埔寨）</h3>
+        <p class="desc">上置集团进军柬埔寨的首个项目：占地 1.63 万㎡、建面约 15 万方商住综合体，同时从零组建柬埔寨分公司。</p>
+        <ul class="proj-points">
+          <li>4 个半月完成新公司组建（注册、税务、制度、团队）；</li>
+          <li>完成土地竞标与交割、报批报建、营销策划，制定 IRR 25%+ 年度经营计划。</li>
+        </ul>
+        <div class="chip-row">
+          <span class="chip num">建面 15 万方</span>
+          <span class="chip">跨境投资</span>
+        </div>
+      </article>
+
+      <article class="proj-card wide reveal">
+        <div class="proj-meta">
+          <span class="proj-badge gray">基建工程</span>
+          <span class="proj-period">2012.08 — 2017.06</span>
+          <span class="proj-role">项目经理</span>
+        </div>
+        <h3>柬埔寨国家 5 号公路（上海建工）</h3>
+        <p class="desc">合同额 5680 万美元、全长 30.331 km 的中国一级公路标准扩建工程（原双向两车道扩建为双向四车道），合同工期 42 个月。</p>
+        <ul class="proj-points">
+          <li><b>征地拆迁：</b>项目位于金边近郊、征拆量大，与柬埔寨财政部、金边市政府、MPWT 反复协调，逐段谈判沿线居民、厂房与商铺，最终完成全部征拆；</li>
+          <li><b>动态施工：</b>征拆进度不可靠，靠穿插作业灵活调度施工单位，保证总工期和费用受控；</li>
+          <li><b>管控与团队：</b>合同范围内全权负责进度、质量、安全与成本——按期交付，0 起重大安全责任事故，核心团队 0 流动率（随员制度留人）。</li>
+        </ul>
+        <div class="chip-row">
+          <span class="chip num">5680 万美元</span>
+          <span class="chip num">0 重大事故</span>
+          <span class="chip num">0 核心团队流失</span>
+          <span class="chip">征地拆迁</span>
+          <span class="chip">动态施工</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 专长技能 ======================= -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="sec-kicker">04 · Skills</p>
+      <h2>专长技能</h2>
+      <p>按方向分组，方便快速了解。</p>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-card reveal">
+        <h3><span class="dot"></span>城市更新与产业规划</h3>
+        <div class="tag-cloud">
+          <span class="tag">城市更新策划</span>
+          <span class="tag">产业研究与定位</span>
+          <span class="tag">低效用地再开发</span>
+          <span class="tag">老旧厂房活化</span>
+          <span class="tag">产业园区规划</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="dot"></span>资产运营与招商</h3>
+        <div class="tag-cloud">
+          <span class="tag">万科资管部首批成员</span>
+          <span class="tag">招商策略与品牌资源</span>
+          <span class="tag">经营目标与预算管理</span>
+          <span class="tag">大宗资产交易</span>
+          <span class="tag">保障性租赁住房运营</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="dot"></span>全周期项目管理</h3>
+        <div class="tag-cloud">
+          <span class="tag">项目前期筹备</span>
+          <span class="tag">跨境投资开发</span>
+          <span class="tag">一二级联动开发</span>
+          <span class="tag">报批报建与政府外联</span>
+          <span class="tag">复杂项目统筹</span>
+          <span class="tag">安全·质量·成本·进度管控</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="dot"></span>数字化与团队</h3>
+        <div class="tag-cloud">
+          <span class="tag">AI 工具应用</span>
+          <span class="tag">数据治理</span>
+          <span class="tag">团队组建与领导（20–100 人）</span>
+          <span class="tag">跨部门与政府协调</span>
+          <span class="tag">方案汇报与写作</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 教育背景 ======================= -->
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="sec-kicker">05 · Education</p>
+      <h2>教育背景</h2>
+    </div>
+    <div class="edu-list">
+      <div class="tl-item reveal" style="padding-bottom: 8px;">
+        <div class="tl-period">2004.09 — 2008.07</div>
+        <h3>东南大学 · 交通工程 <small>大学本科</small></h3>
+        <p>语言：英语（工作应用，CET6）· 职称：工程师（中级，2014 年）</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 联系我 ======================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="sec-kicker">06 · Contact</p>
+      <h2>联系我</h2>
+      <p>欢迎就城市更新、产业规划、资产运营与合作机会交流。</p>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card reveal" href="mailto:fengxinxing@gmail.com" style="display:block;">
+        <div class="ic">✉️</div>
+        <h4>邮箱</h4>
+        <div class="val">fengxinxing@gmail.com</div>
+      </a>
+      <a class="contact-card reveal" href="tel:18359737707" style="display:block;">
+        <div class="ic">📱</div>
+        <h4>电话</h4>
+        <div class="val">183-5973-7707</div>
+      </a>
+      <!-- 需要补充微信 / 领英 / 公众号时，复制上方卡片结构在此追加 -->
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================= 页脚 ======================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="#about">关于我</a>
+      <a href="#experience">工作经历</a>
+      <a href="#projects">项目经历</a>
+      <a href="#skills">专长技能</a>
+      <a href="#education">教育背景</a>
+      <a href="#contact">联系我</a>
+    </div>
+    <p>© <span id="year"></span> 冯星星 Astro · 城市更新与资产运营 · 最后更新 2026-09-02</p>
+    <p>静态单页站点 · 浏览器打印即可输出纸质简历</p>
+  </div>
+</footer>
+
+<script>
+  // 年份自动更新
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // 滚动显现动画（无 JS 环境自动降级为全部可见）
+  document.documentElement.classList.add('js');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
